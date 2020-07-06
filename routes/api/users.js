@@ -44,7 +44,7 @@ router.post(
           .json({ errors: [{ msg: "User already exists" }] });
       }
 
-      // Get users gravatar
+      // Get users gravatar image
       const avatar = gravatar.url(email, {
         //default size
         s: "200",
