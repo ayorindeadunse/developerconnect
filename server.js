@@ -4,6 +4,11 @@ const app = express();
 
 // Connect database
 connectDB();
+
+// Initialize Middleware. Current best practices ensure one does not
+// need to install bodyparser as a separate package, but now
+// it's included with express so we implemement using extended: false
+app.use(express.json({ extended: false }));
 app.get("/", (req, res) => res.send("API Running"));
 
 // Define Routes
