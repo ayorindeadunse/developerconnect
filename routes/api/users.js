@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const { check, validationResult } = require("express-validator/check");
+const { check, validationResult } = require("express-validator");
 const User = require("../../models/User");
 const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const config = require("config");
 // @route  POST api/users
 // @desc   Register user
 // @access Public
@@ -68,8 +70,26 @@ router.post(
       user.password = await bcrypt.hash(password, salt);
       await user.save();
       // Return jsonwebtoken
-
-      res.send("User Registered!");
+      //create payload
+      const payload = {
+        user: {
+          // important to note that mongoose uses an abtraction from the
+          // schema to return the _id property in the users collection
+          // as id instead
+          id: user.id,
+        },
+      };
+      jwt.sign(
+        payload,
+        config.get("jwtSecret"),
+        {
+          expiresIn: 360000,
+        },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server error");
