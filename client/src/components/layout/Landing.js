@@ -6,7 +6,8 @@ const Landing = () => {
     <section className='landing'>
       <div className='dark-overlay'>
         <div className='landing-inner'>
-          <h1 className='x-large'>Developer Connector</h1>
+          <h1 className='x-large'>DeveloperConnect</h1>
+          <small>Building a community of Software Engineers...</small>
           <p className='lead'>
             Create a developer profile/portfolio, share posts and get help from
             other developers
