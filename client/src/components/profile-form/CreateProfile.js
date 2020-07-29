@@ -46,7 +46,11 @@ const CreateProfile = (props) => {
       <small>* = required field</small>
       <form className='form'>
         <div className='form-group'>
-          <select name='status' value={status} onChange={(e) => onChange(e)}>
+          <select
+            className='status'
+            value={status}
+            onChange={(e) => onChange(e)}
+          >
             <option value='0'>* Select Professional Status</option>
             <option value='Developer'>Developer</option>
             <option value='Junior Developer'>Junior Developer</option>
@@ -129,7 +133,7 @@ const CreateProfile = (props) => {
             value={bio}
             onChange={(e) => onChange(e)}
           ></textarea>
-          <small class='form-text'>Tell us a little about yourself</small>
+          <small className='form-text'>Tell us a little about yourself</small>
         </div>
 
         <div className='my-2'>
@@ -145,8 +149,8 @@ const CreateProfile = (props) => {
 
         {displaySocialInputs && (
           <Fragment>
-            <div class='form-group social-input'>
-              <i class='fab fa-twitter fa-2x'></i>
+            <div className='form-group social-input'>
+              <i className='fab fa-twitter fa-2x'></i>
               <input
                 type='text'
                 placeholder='Twitter URL'
