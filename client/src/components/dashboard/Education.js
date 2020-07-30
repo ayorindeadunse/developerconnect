@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 // moment helps to format dates
 import Moment from "react-moment";
 import Proptypes from "prop-types";
+import { deleteEducation } from "../../actions/profile";
 
-const Education = ({ education }) => {
+const Education = ({ education, deleteEducation }) => {
   const educationlist = education.map((edu) => (
     <tr key={edu._id}>
       <td>{edu.school}</td>
@@ -18,7 +19,12 @@ const Education = ({ education }) => {
         )}
       </td>
       <td>
-        <button className='btn btn-danger'>Delete</button>
+        <button
+          onClick={() => deleteEducation(edu._id)}
+          className='btn btn-danger'
+        >
+          Delete
+        </button>
       </td>
     </tr>
   ));
@@ -41,6 +47,7 @@ const Education = ({ education }) => {
 };
 Education.propTypes = {
   education: Proptypes.array.isRequired,
+  deleteEducation: Proptypes.func.isRequired,
 };
 
-export default Education;
+export default connect(null, { deleteEducation })(Education);
