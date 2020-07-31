@@ -71,7 +71,7 @@ export const getProfileById = (userId) => async (dispatch) => {
 // Get all Github repos
 export const getGithubRepos = (username) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/profile/${username}`);
+    const res = await axios.get(`/api/profile/github/${username}`);
 
     dispatch({
       type: GET_REPOS,
@@ -211,7 +211,7 @@ export const deleteExperience = (id) => async (dispatch) => {
 export const deleteAccount = (id) => async (dispatch) => {
   if (window.confirm("Are you sure? This can NOT be undone!")) {
     try {
-      await axios.delete("api/profile");
+      const res = await axios.delete("api/profile");
       dispatch({
         type: CLEAR_PROFILE,
       });
